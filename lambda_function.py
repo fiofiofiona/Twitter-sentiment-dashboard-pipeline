@@ -4,7 +4,7 @@ import json
 
 dynamodb = boto3.resource('dynamodb')
 s3 = boto3.client('s3')
-
+sfn = boto3.client('stepfunctions')
 
 def get_twitter_keys() -> dict:
     """Retrieve secrets from Parameter Store."""
@@ -50,29 +50,52 @@ def lambda_handler(event, context):
 
     raw_bucket_name = 'raw-tweet-bucket'
     txt_bucket_name = 'tweet-text-bucket'
+    tweet_batches = [{'batch': []} for i in range(10)]
+    batch_size = int(len(response)/10)
+    remaining = len(response)%10
+    batch_num = 0
+
     for r in response:
         tweet_id = r._json['id']
         raw_file_name = f"{tweet_id}.json"
         with open('/tmp/' + raw_file_name, "w") as outfile:
             json.dump(r._json, outfile)
         s3.upload_file('/tmp/' + raw_file_name, raw_bucket_name, raw_file_name)
-
+    
         # text = response[0]._json['text']
         # txt_file_name = f"{tweet_id}_txt.json"
         # with open('/tmp/' + txt_file_name, "w") as outfile:
         #     json.dumps(r._json, outfile, default=str)
         # s3.upload_file('/tmp/' + txt_file_name, txt_bucket_name, txt_file_name)
 
+        # batches sent into each lambda worker
+        tweet_dict = {
+            'id': r._json['id'],
+            'TimeStamp': r._json['created_at'],
+            'Twitter account': r._json['user']['id_str'],
+            'Num of comments/retweets': r._json['retweet_count'],
+            'Likes': r._json['favourites_count'],
+            'Reply_to': r._json['in_reply_to_user_id']
+        }
+        tweet_batches[batch_num]['batch'].append(tweet_dict)
+        if len(tweet_batches[batch_num]['batch']) == batch_size:
+            if remaining > 0:
+                remaining -=1 
+                continue
+        batch_num += 1
+
+
     # step function for activating 10 lambda workers
+    response = sfn.list_state_machines()
+    state_machine_arn = [sm['stateMachineArn'] 
+                        for sm in response['stateMachines'] 
+                        if sm['name'] == 'twitter_sm'][0]
 
-    # Enter data into DynamoDB
-    # table = dynamodb.Table('tweet_DB')
-    # # Store item into DynamoDB
-    # table.put_item(
-    #     Item={
-    #     }
-    # )
-
-
-
+    response = sfn.start_sync_execution(
+        stateMachineArn=state_machine_arn,
+        name='sentiment',
+        input=json.dumps(tweet_batches)
+    )
+    
     return {'StatusCode': 200}
+    # return {"batch_size": batch_size, "batch": tweet_batches, }
