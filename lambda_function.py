@@ -70,11 +70,12 @@ def lambda_handler(event, context):
 
         # batches sent into each lambda worker
         tweet_dict = {
-            'id': r._json['id'],
+            'tweet_id': r._json['id'],
             'TimeStamp': r._json['created_at'],
+            'text': r._json['text'],
             'Twitter account': r._json['user']['id_str'],
             'Num of comments/retweets': r._json['retweet_count'],
-            'Likes': r._json['favourites_count'],
+            'Likes': r._json['favorite_count'],
             'Reply_to': r._json['in_reply_to_user_id']
         }
         tweet_batches[batch_num]['batch'].append(tweet_dict)
