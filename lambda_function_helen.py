@@ -1,5 +1,7 @@
 import boto3
 import dataset
+import datetime
+import regex as re
 
 # set up clients
 rds = boto3.client('rds')
@@ -18,7 +20,8 @@ def lambda_handler(event, context):
 
     # Get sentiment info for each tweet from the event batch
     for tweet in event['batch']: 
-        response = comprehend.detect_sentiment(Text=tweet['text'],
+        cleaned_text = re.sub(r"http\S+", "", tweet['text'])
+        response = comprehend.detect_sentiment(Text=cleaned_text,
                                            LanguageCode='en')
         sentiment = response['Sentiment'] 
         sentiment_score = response['SentimentScore']
@@ -27,6 +30,12 @@ def lambda_handler(event, context):
         db_tweets['tweets_table'].upsert({'tweet_id': tweet['tweet_id'],
                             'sentiment' : sentiment,
                             'sentiment_score' : sentiment_score,
+                            'timestamp': datetime.strftime(datetime.strptime(tweet['TimeStamp'],'%a %b %d %H:%M:%S +0000 %Y'), '%Y-%m-%d %H:%M:%S'),
+                            'user_id' : tweet["Twitter account"],
+                            'num_retweets' : tweet['Num of comments/retweets'],
+                            'num_likes' : tweet['Likes'],
+                            'in_reply_to' : tweet['Reply_to'],
+                            'text' : cleaned_text
                             }, ['tweet_id'])
 
     return {'StatusCode': 200}
