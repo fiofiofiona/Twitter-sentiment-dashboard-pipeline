@@ -19,6 +19,8 @@ Given the vast growth in social media usage and reliance for news and informatio
 
 ## Case Study: Abortion Rights
 
+## Prospects of scalability
+
 ## References
 
 
