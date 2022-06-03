@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 import boto3
 from datetime import datetime
-# import pipeline
+import twint_search
 
 # Create an instance of Flask class (represents our application)
 # Pass in name of application's module (__name__ evaluates to current module name)
@@ -21,14 +21,12 @@ def home():
 @app.route("/search", methods = ["GET","POST"])
 def search():
     if request.method == "POST":
-        keyword = request.form['keyword']
-        language = request.form['language'][:2]
-        before_time = request.form['before_time']
-        after_time = request.form['after_time']
-        num_tweets = request.form['num_tweets']
-        print(keyword, language, before_time, after_time, num_tweets)
-    
-    # pipeline.main()
+        param_dict = {}
+        param_dict['keyword'] = request.form['keyword']
+        param_dict['since'] = request.form['before_time']
+        param_dict['until'] = request.form['after_time']
+        param_dict['limit'] = request.form['num_tweets']
+        twint_search.search_tweet(param_dict)
 
     return render_template('search.html')
 
