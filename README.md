@@ -18,6 +18,9 @@ Because the target users of our pipeline tool are social science researchers who
 ![workflow diagram](https://github.com/lsc4ss-s22/final-project-twitter/blob/main/twitter_workflow.png) 
 
 ## Deploying Tweet Data
+There are two possible ways of retrieving latest twitter data:
+1. Tweepy: Python library for requesting the official Twitter API. The standard search API has limitation of getting up to 100 tweets in each request, and user authentification can only make 180 requests per 15 minitue window.   
+2. Twint: Python library for fetching tweets without using API. 
 
 ## Sentiment Analysis with AWS Comprehend
 To keep as much of the pipeline as possible within the AWS ecosystem, we leveraged AWS Comprehend to perform sentiment analysis. Other benefits of AWS Comprehend include its affordability. For example, as described by AWS, it would only cost ~$6 to process 10,000 units of text data with 550 characters each [(See: AWS documentation)](https://aws.amazon.com/comprehend/pricing/). A research experiment comparing NLP packages from AWS, Google, IBM, and Microsoft also affirmed that AWS boasts relatively cheaper rates for sentiment analysis than the other three cloud computing services. Furthermore, the same experiemnt also found that the AWS Comprehend sentiment analysis package performed with the best median accuracy measured in the absolute
