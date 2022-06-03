@@ -38,6 +38,10 @@ For visualization, our project use Amazon QuickSight to visualize the data colle
 
 In our project, the data flows into a RDS database for quick query of sentiment analysis, and in theory the Amazon QuickSight is directly connected to the RDS through a same VPC id to enable concurrently data visualization as the data entered the RDS database. Due to the cloud nature of QuickSight, the scalability of QuickSight is also ensured to handle large data from RDS in timelessness fashion. 
 
+Screenshots of the dashboard <br>
+<img src="https://github.com/lsc4ss-s22/final-project-twitter/blob/main/dashboard/Screen%20Shot%202022-06-03%20at%2015.46.41.png?raw=true" width="800" height="400">
+
+
 ## Case Study: Abortion Rights
 
 ## Prospects of scalability
