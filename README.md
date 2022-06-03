@@ -11,7 +11,7 @@ We propose a workflow for analyzing the sentiments surrounding trending topics o
 
 Given the vast growth in social media usage and reliance for news and information, developing a large-scale method to collect and analyze Twitter data as described above would help inform how users feel and perceive the information that can then potentially inform downstream decision-making behaviors. 
 
-## Instruction
+## Instructions
 1. Prerequisite: prepare an AWS personal account.
 2. Run the following line in command line to download this pipeline tool:
 ```
