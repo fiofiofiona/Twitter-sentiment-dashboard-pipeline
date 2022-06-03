@@ -46,5 +46,6 @@ and or increasing the number of threads per client.
 ## References
 * https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-throughput-horizontal-scaling-and-batching.html 
 * https://aws.amazon.com/blogs/database/scaling-your-amazon-rds-instance-vertically-and-horizontally/
-
+* http://www.ise.tu-berlin.de/fileadmin/fg308/publications/2020/pallas-staufer-kuhlenkamp-ieee-big-data-cloud-nlp-accuracy-evaluation-preprint.pdf
+* https://aws.amazon.com/comprehend/pricing/
 
