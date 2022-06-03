@@ -51,7 +51,7 @@ Our data pipeline is scalable on multiple fronts:
 
 * **RDS:** If greater storage capacity is needed, it is possible to modify the instance type of the current RDS db. If there is uncertainty regarding future workload size, it is also possible to set RDS to automatically scale. 
 
-* **QuickSight** QuickSight is built with "SPICE" – a Super-fast, Parallel, In-memory Calculation Engine that is designed to handle large data and enables hundreds of users to access the dashboard simutaneously. 
+* **QuickSight:** QuickSight is serverless and is built with "SPICE" – a super-fast, parallel, in-memory calculation engine that is designed to handle large data and enables hundreds of users to access the dashboard simutaneously. 
 
 
 
