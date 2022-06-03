@@ -28,6 +28,9 @@ The current pipeline leverages the 10 allowed invocations of Lambda functions to
 Unlike local storages that take up space in disk, cloud databases free up local storage space and provide easy access to large amount of data. In this project, our choice of AWS S3 bucket allows a complete backup for twitter data used in the sentiment analysis, and thus users can always refer back to the raw data, conduct more analyses, and draw different conclusions from the same dataset. Our design of using RDS for processed tweets data enables quick query of sentiment analysis results, and downstream statistical analyses and visualization based on the processed data can be easily performed and customized for every user. With the cloud nature of these two databases, research that utilizes our pipeline tool is no more limited by the local computational resources and storage space; moreover, these databases in the AWS ecosystem prevent any incompatibility between our data processing pipeline and data storage. 
 
 ## Dashboard Interface
+For visualization, our project use Amazon QuickSight to visualize the data collected from Twitter. QuickSight is an AWS built-in visualization tool that is scalable, serverless, embeddable and optimized for database cloud. In theory (without the restrictions of AWS Academy account), Amazon QuickSight can connect to a wide varity of locan and on-premises datasources, including Oracle, SQL server, and AWS sources like RDS, Redshift, Athena, and S3. QuickSight can also scale the analytics capabilities to hundreds or thousands of users by using "SPICE" -a Super-fast, Parallel, In-memory Calculation Engine. 
+
+In our project, the data flows into a RDS database for quick query of sentiment analysis, and in theory the Amazon QuickSight is directly connected to the RDS through a same VPC id to enable concurrently data visualization as the data entered the RDS database. Due to the cloud nature of QuickSight, the scalability of QuickSight is also ensured to handle large data from RDS in timelessness fashion. 
 
 ## Case Study: Abortion Rights
 
@@ -37,6 +40,8 @@ Our data pipeline is scalable on multiple fronts:
 * **Lambda functions:** We are currently limited to 10 invocations of Lambda by AWS Academy. To scale up to potentially 10,000 Lambda functions, we recommend switching to a personal AWS account, which can provide more resources for larger-scale parallelization.
 
 * **RDS:** If greater storage capacity is needed, it is possible to modify the instance type of the current RDS db. If there is uncertainty regarding future workload size, it is also possible to set RDS to automatically scale. 
+
+* **QuickSight** QuickSight is built with "SPICE" – a Super-fast, Parallel, In-memory Calculation Engine that is designed to handle large data and enables humdreds of users to access the dashboard simutaneously. 
 
 ### 
 * **SQS queue:** AWS's SQS queue already has high throughput allowing for even bigger streams of data than we currently have (and are limited by Twitter APIs). If needed, throughput can be further increased by horizontally scaling up SQS by: increasing the number of threads per client, adding more clients
