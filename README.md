@@ -16,6 +16,11 @@ Because the target users of our pipeline tool are social science researchers who
 
 ## Deploying Tweet Data
 
+## Sentiment Analysis with AWS Comprehend
+To keep as much of the pipeline as possible within the AWS ecosystem, we leveraged AWS Comprehend to perform sentiment analysis. Other benefits of AWS Comprehend include its affordability. For example, as described by AWS, it would only cost ~$6 to process 10,000 units of text data with 550 characters each ([AWS documentation](https://aws.amazon.com/comprehend/pricing/). A research experiment comparing NLP packages from AWS, Google, IBM, and Microsoft also affirmed that AWS boasts relatively cheaper rates for sentiment analysis than the other three cloud computing services. Furthermore, the same experiemnt also found that the AWS Comprehend sentiment analysis package performed with the best median accuracy measured in the absolute
+polarity offset (APO) [Pallas,Staufer, Kuhlenkamp](http://www.ise.tu-berlin.de/fileadmin/fg308/publications/2020/pallas-staufer-kuhlenkamp-ieee-big-data-cloud-nlp-accuracy-evaluation-preprint.pdf)
+
+
 ## Parallelization Design
 The current pipeline leverages the 10 allowed invocations of Lambda functions to parallelize sentiment analysis and RDS upsert. A stepfunction is used to pass 10 batches of tweet data to the Lambda function carrying the boto3 client call to AWS Comprehend and RDS. Parallelism on sentiment analysis and writing into database allows a significant decrease in time; the shorter waiting time and the smaller possibility of timeout in processing twitter data are the main advantages of our parallelization design.
 
