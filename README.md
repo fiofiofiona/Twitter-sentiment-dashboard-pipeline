@@ -18,7 +18,7 @@ Because the target users of our pipeline tool are social science researchers who
 
 ## Sentiment Analysis with AWS Comprehend
 To keep as much of the pipeline as possible within the AWS ecosystem, we leveraged AWS Comprehend to perform sentiment analysis. Other benefits of AWS Comprehend include its affordability. For example, as described by AWS, it would only cost ~$6 to process 10,000 units of text data with 550 characters each [(See: AWS documentation)](https://aws.amazon.com/comprehend/pricing/). A research experiment comparing NLP packages from AWS, Google, IBM, and Microsoft also affirmed that AWS boasts relatively cheaper rates for sentiment analysis than the other three cloud computing services. Furthermore, the same experiemnt also found that the AWS Comprehend sentiment analysis package performed with the best median accuracy measured in the absolute
-polarity offset (APO) [(Pallas,Staufer, Kuhlenkamp, 2020)](http://www.ise.tu-berlin.de/fileadmin/fg308/publications/2020/pallas-staufer-kuhlenkamp-ieee-big-data-cloud-nlp-accuracy-evaluation-preprint.pdf)
+polarity offset (APO) [(Pallas,Staufer, Kuhlenkamp, 2020)](http://www.ise.tu-berlin.de/fileadmin/fg308/publications/2020/pallas-staufer-kuhlenkamp-ieee-big-data-cloud-nlp-accuracy-evaluation-preprint.pdf).
 
 
 ## Parallelization Design
