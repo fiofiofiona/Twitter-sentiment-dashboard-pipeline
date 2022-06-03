@@ -3,7 +3,7 @@
 Group Members: 
 <br>. Emily Yeh: Set up Lambda Function streaming tweet search result on AWS via Tweepy package, Case Study on the key word "Abortion Rights" 
 <br>. Fiona Lee: Create S3 buckets to store the tweet raw data and RDS db to store select tweet data including sentiment analysis results
-<br>. Helen Yap: Set up Lambda function to perform Sentiment Analysis on tweets and upsert tweet data to RDS 
+<br>. Helen Yap: Set up Lambda function to perform sentiment analysis on tweets and upsert tweet data to RDS 
 <br>. Yutai Li: Build the dashboard to analyze and visualize the descriptive statistics and sentiment classification results 
 
 ## Introduction
