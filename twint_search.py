@@ -4,6 +4,7 @@ import twint
 import nest_asyncio
 nest_asyncio.apply()
 import database
+from datetime import datetime
 
 '''
 param_dict = {
@@ -16,7 +17,7 @@ param_dict = {
 
 def search_tweet(param_dict):
   c = twint.Config()
-  if param_dict['since'] != None and len(param_dict['since'] > 0) and param_dict['until'] != None and len(param_dict['until'] > 0):
+  if param_dict['since'] != None and len(param_dict['since']) > 0 and param_dict['until'] != None and len(param_dict['until']) > 0:
     c.Search = "(To:{}) until:{} since:{}".format(param_dict['keyword'], param_dict['since'], param_dict['until'])
   else:
     c.Search = param_dict['keyword']
@@ -31,10 +32,14 @@ def search_tweet(param_dict):
   tweets = twint.output.tweets_list
   
   tweets_lst = [] #list storing dicts, each dicts contain one tweet
+  
   for tweet in tweets:
+    dt = tweet.datestamp + " " + tweet.timestamp +" " + tweet.timezone
+    fmt = "%Y-%m-%d %H:%M:%S %z"
+    dt_n = datetime.strptime(dt, fmt)
     # tweet_dict = {
     #     'tweet_id': tweet.id,
-    #     'TimeStamp': tweet.datetime, #format slightly different: '2022-06-02 18:49:35 UTC'
+    #     'TimeStamp': dtn, #format slightly different: '2022-06-02 18:49:35 UTC'
     #     'Twitter account': tweet.user_id,
     #     'Num of comments/retweets': tweet.retweets_count,
     #     'Likes': tweet.likes_count,
@@ -42,8 +47,8 @@ def search_tweet(param_dict):
     # }
     tweets_lst.append(tweet)
 
-  # database.send_data(tweets_lst, param_dict['keyword'])
-  return tweets_lst, param_dict['keyword']  
+  database.send_data(tweets_lst, param_dict['keyword'])
+  # return tweets_lst, param_dict['keyword']  
 
 if __name__ == '__main__':
   search_tweet(param_dict = {
