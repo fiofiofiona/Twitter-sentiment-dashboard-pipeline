@@ -33,13 +33,14 @@ Unlike local storages that take up space in disk, cloud databases free up local 
 
 ## Prospects of scalability
 Our data pipeline is scalable on multiple fronts: 
-* **SQS queue:** AWS's SQS queue already has high throughput allowing for even bigger streams of data than we currently have (and are limited by Twitter APIs). If needed, throughput can be further increased by horizontally scaling up SQS by: increasing the number of threads per client, adding more clients
-and or increasing the number of threads per client. 
 
 * **Lambda functions:** We are currently limited to 10 invocations of Lambda by AWS Academy. To scale up to potentially 10,000 Lambda functions, we recommend switching to a personal AWS account, which can provide more resources for larger-scale parallelization.
 
 * **RDS:** If greater storage capacity is needed, it is possible to modify the instance type of the current RDS db. If there is uncertainty regarding future workload size, it is also possible to set RDS to automatically scale. 
 
+### 
+* **SQS queue:** AWS's SQS queue already has high throughput allowing for even bigger streams of data than we currently have (and are limited by Twitter APIs). If needed, throughput can be further increased by horizontally scaling up SQS by: increasing the number of threads per client, adding more clients
+and or increasing the number of threads per client. 
 
 
 
