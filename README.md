@@ -21,7 +21,7 @@ The current pipeline leverages the 10 allowed invocations of Lambda functions to
 ## Case Study: Abortion Rights
 
 ## Prospects of scalability
-Our data pipeline is scalable on multiple front: 
+Our data pipeline is scalable on multiple fronts: 
 * **SQS queue:** AWS's SQS queue already has high throughput allowing for even bigger streams of data than we currently have (and are limited by Twitter APIs). If needed, throughput can be further increased by horizontally scaling up SQS by: increasing the number of threads per client, adding more clients
 and or increasing the number of threads per client. 
 
