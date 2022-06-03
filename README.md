@@ -9,7 +9,25 @@ Group Members:
 ## Introduction
 We propose a workflow for analyzing the sentiments surrounding trending topics on Twitter. We will first stream the Twitter API to the AWS services, and provide analytical data upon keyword queries. By conducting content analysis tasks such as sentiment classification on those tweet conversations and organizing the descriptive information on a dashboard, our pipeline could allow users to gain the insights of how a specified topic is led and discussed by opinion leaders. 
 
-Given the vast growth in social media usage and reliance for news and information, developing a large-scale method to collect and analyze Twitter data as described above would help inform how users feel and perceive the information that can then potentially inform downstream decision-making behaviors.  
+Given the vast growth in social media usage and reliance for news and information, developing a large-scale method to collect and analyze Twitter data as described above would help inform how users feel and perceive the information that can then potentially inform downstream decision-making behaviors. 
+
+## Instruction
+1. Prerequisite: prepare an AWS personal account.
+2. Run the following line in command line to download this pipeline tool:
+```
+git clone https://github.com/lsc4ss-s22/final-project-twitter.git
+```
+3. Run the following line in command line to install all packages needed:
+```
+pip -r requirements.txt
+```
+4. To open the GUI and start using the pipeline, go into the 'final-project-twitter' folder and run the following line in command line:
+```
+cd api
+python application.py
+```
+5. Open the GUI in browser by clicking the url in command line (most likely to be "http://127.0.0.1:5000"), or copy and paste it into a new browser window. 
+6. Follow the instruction on GUI and start getting data!
 
 ## User Interface
 Because the target users of our pipeline tool are social science researchers who may not have advanced knolwedge and skills or enough time to build up a whole pipeline including tweets scraping, data storage, sentiment analysis and visualization, we hope to incapsulate all technical details in a downlodable repository. By entering parameters for tweets data, the pipeline takes in user-specified requirements and scrapes the corresponding data for analysis. Users do not need to run any code or upload any files manually onto AWS; the only prerequisite on the user end is have an AWS personal account available, and by sending parameters into the pipeline, databases with tweets data and visualizations of tweets' sentiment are ready to be accessed. Social science researchers can thus work with large-scaled social media data even without sufficient computational resources and advanced skills. 
