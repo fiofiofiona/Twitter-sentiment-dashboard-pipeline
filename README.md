@@ -1,5 +1,5 @@
 ##### final-project-twitter
-# Dashboard Service of Targeted Sentiment Analysis on Trending Twitter Topics
+# Dashboard Service of Sentiment Analysis on Trending Twitter Topics
 Group Members: 
 <br>. Emily Yeh: Set up Lambda Function streaming tweet search result on AWS via Tweepy package, Case Study on the key word "Abortion Rights" 
 <br>. Fiona Lee: Create S3 buckets to store the tweet raw data and RDS db to store select tweet data including sentiment analysis results, chain user input and data into pipeline
