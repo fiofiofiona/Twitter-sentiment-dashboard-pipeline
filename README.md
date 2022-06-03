@@ -14,6 +14,9 @@ Given the vast growth in social media usage and reliance for news and informatio
 ## User Interface
 Because the target users of our pipeline tool are social science researchers who may not have advanced knolwedge and skills or enough time to build up a whole pipeline including tweets scraping, data storage, sentiment analysis and visualization, we hope to incapsulate all technical details in a downlodable repository. By entering parameters for tweets data, the pipeline takes in user-specified requirements and scrapes the corresponding data for analysis. Users do not need to run any code or upload any files manually onto AWS; the only prerequisite on the user end is have an AWS personal account available, and by sending parameters into the pipeline, databases with tweets data and visualizations of tweets' sentiment are ready to be accessed. Social science researchers can thus work with large-scaled social media data even without sufficient computational resources and advanced skills. 
 
+## Workflow
+![workflow diagram](https://github.com/lsc4ss-s22/final-project-twitter/blob/main/twitter_workflow.png) 
+
 ## Deploying Tweet Data
 
 ## Sentiment Analysis with AWS Comprehend
