@@ -47,11 +47,8 @@ Our data pipeline is scalable on multiple fronts:
 
 * **RDS:** If greater storage capacity is needed, it is possible to modify the instance type of the current RDS db. If there is uncertainty regarding future workload size, it is also possible to set RDS to automatically scale. 
 
-* **QuickSight** QuickSight is built with "SPICE" – a Super-fast, Parallel, In-memory Calculation Engine that is designed to handle large data and enables humdreds of users to access the dashboard simutaneously. 
+* **QuickSight** QuickSight is built with "SPICE" – a Super-fast, Parallel, In-memory Calculation Engine that is designed to handle large data and enables hundreds of users to access the dashboard simutaneously. 
 
-### 
-* **SQS queue:** AWS's SQS queue already has high throughput allowing for even bigger streams of data than we currently have (and are limited by Twitter APIs). If needed, throughput can be further increased by horizontally scaling up SQS by: increasing the number of threads per client, adding more clients
-and or increasing the number of threads per client. 
 
 
 
