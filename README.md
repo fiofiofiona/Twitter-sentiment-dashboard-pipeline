@@ -11,6 +11,9 @@ We propose a workflow for analyzing the sentiments surrounding trending topics o
 
 Given the vast growth in social media usage and reliance for news and information, developing a large-scale method to collect and analyze Twitter data as described above would help inform how users feel and perceive the information that can then potentially inform downstream decision-making behaviors.  
 
+## User Interface
+Because the target users of our pipeline tool are social science researchers who may not have advanced knolwedge and skills or enough time to build up a whole pipeline including tweets scraping, data storage, sentiment analysis and visualization, we hope to incapsulate all technical details in a downlodable repository. By entering parameters for tweets data, the pipeline takes in user-specified requirements and scrapes the corresponding data for analysis. Users do not need to run any code or upload any files manually onto AWS; the only prerequisite on the user end is have an AWS personal account available, and by sending parameters into the pipeline, databases with tweets data and visualizations of tweets' sentiment are ready to be accessed. 
+
 ## Deploying Tweet Data
 
 ## Parallelization Design
