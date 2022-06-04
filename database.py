@@ -1,8 +1,5 @@
-from fileinput import filename
 import boto3
 import json
-import dataset
-import subprocess
 import os
 
 sqs = boto3.client('sqs')
@@ -65,64 +62,6 @@ def setup(keyword):
         else:
             print(e)
 
-    # # Create Lambda Function
-    # with open('./deployment.zip', 'rb') as f:
-    #     lambda_zip = f.read()
-
-    # try:
-    #     # If function hasn't yet been created, create it
-    #     response = aws_lambda.create_function(
-    #         FunctionName='tweet_lambda',
-    #         Runtime='python3.9',
-    #         Role=role['Role']['Arn'],
-    #         Handler='lambda_function.lambda_handler',
-    #         Code=dict(ZipFile=lambda_zip),
-    #         Timeout=3
-    #     )
-    # except aws_lambda.exceptions.ResourceConflictException:
-    #     # If function already exists, update it based on zip file contents
-    #     response = aws_lambda.update_function_code(
-    #     FunctionName='tweet_lambda',
-    #     ZipFile=lambda_zip
-    #     )
-
-    # lambda_arn = response['FunctionArn']  
-
-    # # Create SQS Queue
-    # try:
-    #     queue_url = sqs.create_queue(QueueName='Tweet')['QueueUrl']
-    # except sqs.exceptions.QueueNameExists:
-    #     queue_url = [url
-    #                 for url in sqs.list_queues()['QueueUrls']
-    #                 if 'Tweet' in url][0]
-        
-    # sqs_info = sqs.get_queue_attributes(QueueUrl=queue_url,
-    #                                     AttributeNames=['QueueArn'])
-    # sqs_arn = sqs_info['Attributes']['QueueArn']
-
-    # # Trigger Lambda Function when new data enter SQS Queue
-    # try:
-    #     response = aws_lambda.create_event_source_mapping(
-    #         EventSourceArn=sqs_arn,
-    #         FunctionName='tweet_lambda',
-    #         Enabled=True,
-    #         BatchSize=10
-    #     )
-    # except aws_lambda.exceptions.ResourceConflictException:
-    #     es_id = aws_lambda.list_event_source_mappings(
-    #         EventSourceArn=sqs_arn,
-    #         FunctionName='tweet_lambda'
-    #     )['EventSourceMappings'][0]['UUID']
-        
-    #     response = aws_lambda.update_event_source_mapping(
-    #         UUID=es_id,
-    #         FunctionName='tweet_lambda',
-    #         Enabled=True,
-    #         BatchSize=10
-    #     )
-
-    # print("SQS -> Lambda Architecture has been Launched")
-
     # Create the lambda function for 10 parallel lambda workers
     with open('../twitter_sentiment_deployment_package.zip', 'rb') as f:
         lambda_zip = f.read()
@@ -155,12 +94,10 @@ def setup(keyword):
 
 def send_data(data, keyword, file=False):
     if file:
-        print(data)
+        # print(data)
         setup(keyword=keyword)
         data = json.load(open(f'../{data}'))
         data = list(data.values())
-    # response = sqs.send_message(QueueUrl=sqs_url,
-                                    # MessageBody=json.dumps(data))
     response = distribute_data(data, keyword)
                                 
     return response['ResponseMetadata']['HTTPStatusCode']
