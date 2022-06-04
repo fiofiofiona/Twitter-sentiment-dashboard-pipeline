@@ -61,6 +61,10 @@ Screenshots of the dashboard <br>
 
 
 ## Case Study: Abortion Rights
+In a case study, we test our workflow by focusing on the discussion on abortion rights on Twitter. Specifically, we used the word "abortion" as the search term, and limit the date to June 2nd 2022. Through our scraping -> storing -> and visualization workflow, we collected 600 tweets for that single day in total. The overall sentiment is overly negative, with only a few tweets have the positive sentiment. Also, the number of likes and retweets are highly correlated, meaning that both variables are good indicators of the influences of tweets. However, in the topic of abortion, the sentiment score is not strongly correlated with neither number of likes and number of retweets. This visualization tool generate insights for users to quickly catch the overall sentiment of one topic on Twitter.
+<img src="https://github.com/lsc4ss-s22/final-project-twitter/blob/main/dashboard/Screen%20Shot%202022-06-03%20at%2015.47.19.png?raw=true" width="1000" height="400">
+<img src="https://github.com/lsc4ss-s22/final-project-twitter/blob/main/dashboard/Screen%20Shot%202022-06-03%20at%2015.49.17.png?raw=true" width="1000" height="400">
+
 
 ## Prospects of scalability
 Our data pipeline is scalable on multiple fronts: 
