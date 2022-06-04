@@ -29,6 +29,8 @@ python application.py
 5. Open the GUI in browser by clicking the url in command line (most likely to be "http://127.0.0.1:5000"), or copy and paste it into a new browser window. 
 6. Follow the instruction on GUI and start getting data!
 
+* To run the pipeline step by step or customize with specific purposes, follow step 1 to 3 and run [database.ipynb](https://github.com/lsc4ss-s22/final-project-twitter/blob/main/database.ipynb).
+
 ## User Interface
 Because the target users of our pipeline tool are social science researchers who may not have advanced knolwedge and skills or enough time to build up a whole pipeline including tweets scraping, data storage, sentiment analysis and visualization, we hope to incapsulate all technical details in a downlodable repository. By entering parameters for tweets data, the pipeline takes in user-specified requirements and scrapes the corresponding data for analysis. Users do not need to run any code or upload any files manually onto AWS; the only prerequisite on the user end is have an AWS personal account available, and by sending parameters into the pipeline, databases with tweets data and visualizations of tweets' sentiment are ready to be accessed. Social science researchers can thus work with large-scaled social media data even without sufficient computational resources and advanced skills. 
 
