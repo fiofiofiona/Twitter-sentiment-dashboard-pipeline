@@ -1,4 +1,3 @@
-##### final-project-twitter
 # Dashboard Service of Sentiment Analysis on Researcher-specified Twitter Topics
 Group Members: 
 <br>. Emily Yeh: Set up Lambda Function streaming tweet search result on AWS via Tweepy package, Case Study on the key word "Abortion Rights" 
